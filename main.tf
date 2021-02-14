@@ -6,6 +6,12 @@ data "aws_vpc" "default" {
   default = true
 }
 
+terraform {
+  backend "s3" {
+    key = "global/s3/asg/terraform.tfstate"
+  }
+}
+
 data "aws_subnet_ids" "default" {
   vpc_id = data.aws_vpc.default.id
 }
@@ -34,7 +40,7 @@ resource "aws_security_group" "instance" {
 
 resource "aws_launch_configuration" "example" {
   image_id        = var.image_id
-  instance_type   = "t2.micro"
+  instance_type   = terraform.workspace == "default" ? "t2.medium" : "t2.micro"
   security_groups = [aws_security_group.instance.id]
 
   user_data = <<-EOT
