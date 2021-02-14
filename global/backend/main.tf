@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    key = "global/s3/terraform.tfstate"
+    key = "global/backend/terraform.tfstate"
   }
 }
 
