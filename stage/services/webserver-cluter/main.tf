@@ -131,7 +131,7 @@ resource "aws_lb_listener_rule" "asg" {
 }
 
 data "template_file" "user_data" {
-  template_file = file("user-data.sh")
+  template = file("user-data.sh")
 
   vars = {
     server_port = var.server_port
