@@ -32,11 +32,7 @@ resource "aws_launch_configuration" "example" {
   instance_type   = terraform.workspace == "default" ? "t2.medium" : "t2.micro"
   security_groups = [aws_security_group.instance.id]
 
-  user_data = <<-EOT
-              #!/bin/bash
-              echo "Hello, World" > index.html
-              busybox httpd -f -p ${var.server_port} &
-              EOT
+  user_data = data.template_file.user_data.rendered
 
   lifecycle {
     create_before_destroy = true
@@ -51,7 +47,7 @@ resource "aws_autoscaling_group" "example" {
   health_check_type = "ELB"
 
   min_size = 2
-  max_size = 10
+  max_size = 3
 
   tag {
     key                 = "Name"
@@ -131,5 +127,25 @@ resource "aws_lb_listener_rule" "asg" {
   action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.asg.arn
+  }
+}
+
+data "template_file" "user_data" {
+  template_file = file("user-data.sh")
+
+  vars = {
+    server_port = var.server_port
+    db_address  = data.terraform_remote_state.db.outputs.address
+    db_port     = data.terraform_remote_state.db.outputs.port
+  }
+}
+
+data "terraform_remote_state" "db" {
+  backend = "s3"
+
+  config = {
+    bucket = "terraform-state-rdnudxq0"
+    region = "ap-southeast-1"
+    key    = "stage/data-stores/mysql/terraform.tfstate"
   }
 }
