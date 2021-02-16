@@ -11,9 +11,9 @@ terraform {
 module "data_sources" {
   source = "../../../modules/data-sources/mysql"
 
-  cluster_name      = "data-sources-stage"
-  db_name           = "db-instance-stage"
+  cluster_name      = "data-sources-prod"
+  db_name           = "db-instance-prod"
   db_username       = "admin"
-  db_pass_secret_id = "mysql-pass-stage"
+  db_pass_secret_id = "mysql-pass-prod"
   instance_class    = "db.t2.micro"
 }

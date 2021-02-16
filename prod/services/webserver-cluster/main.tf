@@ -10,4 +10,12 @@ terraform {
 
 module "webserver_cluster" {
   source = "../../../modules/services/webserver-cluter"
+
+  cluster_name           = "webservers-stage"
+  db_remote_state_bucket = "terraform-state-rdnudxq0"
+  db_remote_state_key    = "prod/data-stores/mysql/terraform.tfstate"
+
+  instance_type = "t2.micro"
+  min_size      = 2
+  max_size      = 10
 }
