@@ -17,3 +17,4 @@ module "data_sources" {
   db_pass_secret_id = "master-password-mysql-stage"
   db_instance_class = "db.t2.micro"
 }
+
