@@ -9,11 +9,11 @@ terraform {
 }
 
 module "data_sources" {
-  source = "../../../modules/data-sources/mysql"
+  source = "../../../modules/data-stores/mysql"
 
   cluster_name      = "data-sources-stage"
-  db_name           = "db-instance-stage"
+  db_name           = "dbinstancet2microstage"
   db_username       = "admin"
-  db_pass_secret_id = "mysql-pass-stage"
-  instance_class    = "db.t2.micro"
+  db_pass_secret_id = "master-password-mysql-stage"
+  db_instance_class = "db.t2.micro"
 }

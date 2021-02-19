@@ -13,11 +13,11 @@ terraform {
   }
 }
 
-resource "aws_secretsmanager_secret" "example" {
-  name = "example"
+resource "aws_secretsmanager_secret" "secret" {
+  name = "master-password-mysql-stage"
 }
 
-resource "aws_secretsmanager_secret_version" "example" {
-  secret_id     = aws_secretsmanager_secret.example.id
+resource "aws_secretsmanager_secret_version" "db_pass" {
+  secret_id     = aws_secretsmanager_secret.secret.id
   secret_string = var.mysql_pass
 }

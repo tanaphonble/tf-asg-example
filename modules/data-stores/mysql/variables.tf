@@ -18,7 +18,7 @@ variable "db_pass_secret_id" {
   type        = string
 }
 
-variable "instance_class" {
+variable "db_instance_class" {
   description = "The class of the instance to use for the database (e.g. db.t2.micro)"
   type        = string
 }
