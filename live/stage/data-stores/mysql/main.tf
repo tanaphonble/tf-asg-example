@@ -9,7 +9,7 @@ terraform {
 }
 
 module "data_sources" {
-  source = "../../../modules/data-stores/mysql"
+  source = "github.com/tanaphonble/tf-modules//data-stores/mysql?ref=v0.0.2"
 
   cluster_name      = "data-sources-stage"
   db_name           = "dbinstancet2microstage"
