@@ -9,7 +9,7 @@ terraform {
 }
 
 module "webserver_cluster" {
-  source = "github.com/tanaphonble/tf-modules//services/webserver-cluster?ref=v0.0.2"
+  source = "github.com/tanaphonble/tf-modules//services/webserver-cluster?ref=v0.0.3"
 
   cluster_name           = "webservers-stage"
   db_remote_state_bucket = "terraform-state-rdnudxq0"
@@ -18,6 +18,11 @@ module "webserver_cluster" {
   instance_type = "t2.micro"
   min_size      = 1
   max_size      = 1
+
+  custom_tags = {
+    Owner      = "team-ble"
+    DeployedBy = "terraform"
+  }
 }
 
 
