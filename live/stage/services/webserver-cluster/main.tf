@@ -9,8 +9,9 @@ terraform {
 }
 
 module "webserver_cluster" {
-  source = "github.com/tanaphonble/tf-modules//services/webserver-cluster?ref=v0.3.3"
+  source = "github.com/tanaphonble/tf-modules//services/webserver-cluster?ref=v0.4.0"
 
+  server_text            = "New Server"
   cluster_name           = "webservers-stage"
   db_remote_state_bucket = "terraform-state-rdnudxq0"
   db_remote_state_key    = "stage/data-stores/mysql/terraform.tfstate"
@@ -19,8 +20,7 @@ module "webserver_cluster" {
   min_size      = 1
   max_size      = 1
 
-  enable_autoscaling   = false
-  enable_new_user_data = true
+  enable_autoscaling = false
 
   custom_tags = {
     Owner      = "team-ble"
