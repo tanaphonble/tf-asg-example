@@ -9,7 +9,7 @@ terraform {
 }
 
 module "webserver_cluster" {
-  source = "github.com/tanaphonble/tf-modules//services/webserver-cluster?ref=v0.2.2"
+  source = "github.com/tanaphonble/tf-modules//services/webserver-cluster?ref=v0.3.1"
 
   cluster_name           = "webservers-stage"
   db_remote_state_bucket = "terraform-state-rdnudxq0"
@@ -19,7 +19,8 @@ module "webserver_cluster" {
   min_size      = 1
   max_size      = 1
 
-  enable_autoscaling = false
+  enable_autoscaling   = false
+  enable_new_user_data = true
 
   custom_tags = {
     Owner      = "team-ble"
