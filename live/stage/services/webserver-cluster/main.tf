@@ -9,7 +9,7 @@ terraform {
 }
 
 module "webserver_cluster" {
-  source = "github.com/tanaphonble/tf-modules//services/webserver-cluster?ref=v0.1.3"
+  source = "github.com/tanaphonble/tf-modules//services/webserver-cluster?ref=v0.2.2"
 
   cluster_name           = "webservers-stage"
   db_remote_state_bucket = "terraform-state-rdnudxq0"
