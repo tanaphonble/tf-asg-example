@@ -9,9 +9,9 @@ terraform {
 }
 
 module "webserver_cluster" {
-  source = "github.com/tanaphonble/tf-modules//services/webserver-cluster?ref=v0.4.0"
+  source = "github.com/tanaphonble/tf-modules//services/webserver-cluster?ref=v0.4.2"
 
-  server_text            = "New Server"
+  server_text            = "New Server v2"
   cluster_name           = "webservers-stage"
   db_remote_state_bucket = "terraform-state-rdnudxq0"
   db_remote_state_key    = "stage/data-stores/mysql/terraform.tfstate"
