@@ -9,7 +9,7 @@ terraform {
 }
 
 module "webserver_cluster" {
-  source = "github.com/tanaphonble/tf-modules//services/hello-world-app?ref=v1.0.2"
+  source = "github.com/tanaphonble/tf-modules//services/hello-world-app?ref=v1.0.3"
 
   server_text            = "New Server v3"
   environment            = "stage"
