@@ -8,12 +8,12 @@ terraform {
 }
 
 module "data_sources" {
-  source = "github.com/tanaphonble/tf-modules//data-stores/mysql?ref=v0.0.2"
+  source = "github.com/tanaphonble/tf-modules//data-stores/mysql?ref=v1.1.0"
 
-  cluster_name      = "data-sources-stage"
+  identifier_prefix = "rds-stage"
   db_name           = "dbinstancet2microstage"
   db_username       = "admin"
-  db_pass_secret_id = "master-password-mysql-stage"
+  db_password       = var.db_password
   db_instance_class = "db.t2.micro"
 }
 
